@@ -58,7 +58,3 @@ As informações foram salvas no arquivo /meu/caminho/senhas.txt
 - Não se esqueça de fazer um backup do arquivo com suas senhas para uma maior proteção dos seus dados.
 
 #### Esperamos que este programa seja útil para gerar senhas e armazenar informações de forma simples e segura!
-
-
-
-
