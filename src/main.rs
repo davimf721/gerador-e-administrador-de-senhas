@@ -1,4 +1,4 @@
-use std::fs::OpenOptions;
+use std::fs::{self, OpenOptions};
 use std::io::{self, Write};
 use rand::distributions::Alphanumeric;
 use rand::{Rng, thread_rng};
@@ -10,6 +10,24 @@ fn generate_password(length: usize) -> String {
         .map(|c| c as char)
         .collect();
     password
+}
+
+fn get_file_path() -> String {
+    // Tenta ler o caminho do arquivo de configuração
+    match fs::read_to_string("config.txt") {
+        Ok(contents) => contents.trim().to_string(),
+        Err(_) => {
+            // Se não houver um arquivo de configuração, solicita ao usuário que insira o caminho
+            println!("Digite o caminho completo do arquivo (ex: /caminho/do/arquivo/nome_arquivo.txt):");
+            let mut file_path = String::new();
+            io::stdin().read_line(&mut file_path).expect("Falha ao ler a entrada");
+
+            // Salva o caminho no arquivo de configuração
+            fs::write("config.txt", &file_path).expect("Erro ao escrever no arquivo de configuração");
+
+            file_path.trim().to_string()
+        }
+    }
 }
 
 fn main() {
@@ -44,17 +62,14 @@ fn main() {
        generate_password(length)
    };
 
-    // Solicita o caminho do arquivo
-    println!("Digite o caminho completo do arquivo (ex: /caminho/do/arquivo/nome_arquivo.txt):");
-    let mut file_path = String::new();
-    io::stdin().read_line(&mut file_path).expect("Falha ao ler a entrada");
-    let file_path = file_path.trim();
+    // Obtém o caminho do arquivo
+    let file_path = get_file_path();
 
     // Cria ou abre o arquivo para escrita
     let mut file = OpenOptions::new()
         .create(true)
         .append(true)
-        .open(file_path)
+        .open(&file_path)
         .expect("Erro ao abrir o arquivo");
 
     // Escreve as informações no arquivo
