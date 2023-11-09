@@ -43,12 +43,18 @@ fn main() {
 
        generate_password(length)
    };
-   
+
+    // Solicita o caminho do arquivo
+    println!("Digite o caminho completo do arquivo (ex: /caminho/do/arquivo/nome_arquivo.txt):");
+    let mut file_path = String::new();
+    io::stdin().read_line(&mut file_path).expect("Falha ao ler a entrada");
+    let file_path = file_path.trim();
+
     // Cria ou abre o arquivo para escrita
     let mut file = OpenOptions::new()
         .create(true)
         .append(true)
-        .open("H:/segurança/administrador-informacoes/src/senhas/minhasSenhas.txt")
+        .open(file_path)
         .expect("Erro ao abrir o arquivo");
 
     // Escreve as informações no arquivo
@@ -56,5 +62,5 @@ fn main() {
     writeln!(file, "Site: {}", site.trim()).expect("Erro ao escrever no arquivo");
     writeln!(file, "Senha: {}", password).expect("Erro ao escrever no arquivo");
     writeln!(file, "\n").expect("Erro ao escrever no arquivo");
-    println!("As informações foram salvas no arquivo minhas senhas.txt");
+    println!("As informações foram salvas no caminho: {}",file_path);
 }
