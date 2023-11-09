@@ -12,9 +12,15 @@ fn generate_password(length: usize) -> String {
     password
 }
 
+
 fn get_file_path() -> String {
+    let config_folder = "configuracao";
+    fs::create_dir_all(config_folder).expect("Falha ao criar o diretório de configuração");
+
+    let config_path = format!("{}/config.txt", config_folder);
+
     // Tenta ler o caminho do arquivo de configuração
-    match fs::read_to_string("config.txt") {
+    match fs::read_to_string(&config_path) {
         Ok(contents) => contents.trim().to_string(),
         Err(_) => {
             // Se não houver um arquivo de configuração, solicita ao usuário que insira o caminho
@@ -23,13 +29,12 @@ fn get_file_path() -> String {
             io::stdin().read_line(&mut file_path).expect("Falha ao ler a entrada");
 
             // Salva o caminho no arquivo de configuração
-            fs::write("config.txt", &file_path).expect("Erro ao escrever no arquivo de configuração");
+            fs::write(&config_path, &file_path).expect("Erro ao escrever no arquivo de configuração");
 
             file_path.trim().to_string()
         }
     }
 }
-
 fn main() {
     // Solicita informações do usuário
     println!("Digite o e-mail:");

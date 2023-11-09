@@ -1,1 +1,0 @@
-h:/segurança/administrador-informacoes/src/senhas/minhasSenhas.txt
