@@ -1,8 +1,9 @@
 use std::fs::{self, OpenOptions};
 use std::io::{self, Write};
+use std::thread;
+use std::time::Duration;
 use rand::distributions::Alphanumeric;
 use rand::{Rng, thread_rng};
-
 fn generate_password(length: usize) -> String {
     let password: String = thread_rng()
         .sample_iter(&Alphanumeric)
@@ -82,5 +83,9 @@ fn main() {
     writeln!(file, "Site: {}", site.trim()).expect("Erro ao escrever no arquivo");
     writeln!(file, "Senha: {}", password).expect("Erro ao escrever no arquivo");
     writeln!(file, "\n").expect("Erro ao escrever no arquivo");
+
     println!("As informações foram salvas no caminho: {}",file_path);
+
+    // Aguarda por 3 segundos antes de fechar
+    thread::sleep(Duration::from_secs(5));
 }
