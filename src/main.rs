@@ -37,6 +37,9 @@ fn get_file_path() -> String {
     }
 }
 fn main() {
+    //mensagem de boas vindas 
+    println!("Bem vindo ao gerador e administrador de senhas!")
+
     // Solicita informações do usuário
     println!("Digite o e-mail:");
     let mut email = String::new();
