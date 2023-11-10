@@ -13,6 +13,7 @@ Este é um programa simples em Rust que permite gerar senhas aleatórias ou inse
 - Requisitos:
 
 Certifique-se de ter o Rust instalado em seu sistema. Caso contrário, você pode obtê-lo em <https://www.rust-lang.org/tools/install>.<br>
+
 Ou simplesmente execute o arquivo com o nome "administrador-informacoes.exe".
 
 ### Clone o repositório
