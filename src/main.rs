@@ -2,18 +2,18 @@ use std::fs::{self, OpenOptions};
 use std::io::{self, Write};
 use std::thread;
 use std::time::Duration;
-use rand::distributions::Alphanumeric;
-use rand::{Rng, thread_rng};
+use rand::rngs::OsRng;
+use rand::Rng;
 
 fn generate_password(length: usize) -> String {
-    let password: String = thread_rng()
-        .sample_iter(&Alphanumeric)
-        .take(length)
-        .map(|c| c as char)
+    let mut rng = OsRng;
+
+    let password: String = (0..length)
+        .map(|_| rng.gen::<char>())
         .collect();
+
     password
 }
-
 
 fn get_file_path() -> String {
     let config_folder = "configuration";
@@ -38,7 +38,6 @@ fn get_file_path() -> String {
     }
 }
 fn main() {
-    
     //mensagem de boas vindas 
     println!("Bem-vindos ao gerenciador e administrador de senhas!");
 
