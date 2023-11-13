@@ -5,7 +5,6 @@ use std::time::Duration;
 use rand::distributions::Alphanumeric;
 use rand::{Rng, thread_rng};
 
-
 fn generate_password(length: usize) -> String {
     let password: String = thread_rng()
         .sample_iter(&Alphanumeric)
@@ -17,7 +16,7 @@ fn generate_password(length: usize) -> String {
 
 
 fn get_file_path() -> String {
-    let config_folder = "configuracao";
+    let config_folder = "configuration";
     fs::create_dir_all(config_folder).expect("Falha ao criar o diretório de configuração");
 
     let config_path = format!("{}/config.txt", config_folder);
@@ -27,7 +26,7 @@ fn get_file_path() -> String {
         Ok(contents) => contents.trim().to_string(),
         Err(_) => {
             // Se não houver um arquivo de configuração, solicita ao usuário que insira o caminho
-            println!("Digite o caminho completo do arquivo (ex: /caminho/do/arquivo/nome_arquivo.txt):");
+            println!("Escreva o caminho do arquivo de configuração (ex: /caminho/do/arquivo/nome_arquivo.txt): ");
             let mut file_path = String::new();
             io::stdin().read_line(&mut file_path).expect("Falha ao ler a entrada");
 
@@ -39,8 +38,9 @@ fn get_file_path() -> String {
     }
 }
 fn main() {
+    
     //mensagem de boas vindas 
-    println!("Bem vindo ao gerador e administrador de senhas!");
+    println!("Bem-vindos ao gerenciador e administrador de senhas!");
 
     // Solicita informações do usuário
     println!("Digite o e-mail:");
