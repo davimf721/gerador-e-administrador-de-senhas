@@ -2,7 +2,7 @@
 
 <h1 > Gerador de Senhas e Armazenamento em Arquivo "CipherKeep" </h1> 
 
-![dados da versão](https://img.shields.io/badge/generator-v0.1.0-brightgreen)
+![dados da versão](https://img.shields.io/badge/generator-v0.1.1-brightgreen)
  ![data de lançamento](https://img.shields.io/badge/release%20date-november-red)
 ![GitHub Org's stars](https://img.shields.io/github/stars/davimf721?style=social)
 
