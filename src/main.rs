@@ -4,6 +4,8 @@ use std::thread;
 use std::time::Duration;
 use rand::distributions::Alphanumeric;
 use rand::{Rng, thread_rng};
+
+
 fn generate_password(length: usize) -> String {
     let password: String = thread_rng()
         .sample_iter(&Alphanumeric)
